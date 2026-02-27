@@ -8,11 +8,15 @@ type AppShellProps = {
 const AppShell = (props: AppShellProps) => {
   const { children } = props;
   return (
-    <main>
+    <div className="app-container">
       <Navbar />
-          {children}
-      <Footer />    
-    </main>
+
+      <main className="main-content">
+        {children}
+      </main>
+
+      <Footer />
+    </div>
   );
 };
 
