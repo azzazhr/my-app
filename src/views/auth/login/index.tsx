@@ -13,6 +13,7 @@ const halamanLogin = () => {
   return (
     <div className={styles.login}>
       <h1>Halaman Login</h1>
+      <h1 className="text-3xl font-bold text-blue-500">Halaman Login</h1>
         {/* <button onClick={handlerLogin}>Login</button>
           <button onClick={() => push("/produk")}>Login</button> <br />
             */}
