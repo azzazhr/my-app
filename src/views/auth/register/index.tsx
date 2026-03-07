@@ -1,32 +1,32 @@
 import Link from "next/link";
-import styles from "./register.module.css";
+// import styles from "./register.module.css";
 
 const TampilanRegister = () => {
   return (
-    <div className={styles.register}>
-      <h1 className={styles.title}>Halaman Register</h1>
+    <div className="h-screen flex flex-col justify-center items-center gap-3">
+      <h1 className="text-3xl font-bold">Halaman Register</h1>
 
       <input
         type="text"
         placeholder="Username"
-        className={styles.input}
+        className="border px-3 py-2 rounded"
       />
 
       <input
         type="email"
         placeholder="Email"
-        className={styles.input}
+        className="border px-3 py-2 rounded"
       />
 
       <input
         type="password"
         placeholder="Password"
-        className={styles.input}
+        className="border px-3 py-2 rounded"
       />
 
-      <button className={styles.button}>Register</button>
+      <button className="border px-3 py-1 rounded">Register</button>
 
-      <Link href="/auth/login" className={styles.link}>
+      <Link href="/auth/login" className="text-blue-500 hover:underline">
         Ke Halaman Login 
       </Link>
     </div>
