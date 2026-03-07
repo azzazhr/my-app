@@ -20,6 +20,11 @@ a{
 }
 
 
+.big{
+  font-size: 1.5rem;
+}
+
+
 /* .navbar {
   width: 100%;
   height: 60px;
