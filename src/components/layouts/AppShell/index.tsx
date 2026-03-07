@@ -13,7 +13,7 @@ const AppShell = (props: AppShellProps) => {
   return (
     <div className="app-container">
 
-      <main>
+      <main className="main-content">
         {!disableNavbar.includes(pathname) && <Navbar /> }
         {children}
       </main>
