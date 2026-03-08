@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const TampilanRegister = () => {
   return (
-    <div className="h-screen flex flex-col justify-center items-center gap-3">
+    <div className="h-screen flex flex-col justify-center items-center gap-3 bg-green-400">
       <h1 className="text-3xl font-bold">Halaman Register</h1>
 
       <input
