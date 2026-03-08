@@ -3,6 +3,7 @@ import Navbar from "../navbar";
 import Footer from "../footer";
 
 const disableNavbar = ["/auth/login", "/auth/register", '/404'];
+
 type AppShellProps = {
   children: React.ReactNode;
 }
