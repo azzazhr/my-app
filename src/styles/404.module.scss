@@ -27,4 +27,19 @@
     p {
         font-size: 17px;
     }
+
+    a {
+        padding: 10px 20px;
+        background-color: #eb3030;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+        margin-top: 10px;
+        transition: 0.2s;
+    }
+
+    a:hover {
+        background-color: #555;
+    }
 }
