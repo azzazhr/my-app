@@ -5,7 +5,8 @@ type ProductType = {
   id: string;
   name: string;
   price : number;
-  size : string;
+  size: string;
+  category : string;
 };
 
 const kategori = () => {
@@ -39,6 +40,7 @@ const kategori = () => {
           <h2>{product.name}</h2>
           <p>Harga: {product.price}</p>
           <p>Ukuran: {product.size}</p>
+          <p>Kategori: {product.category}</p>
         </div>
       ))}
     </div>
