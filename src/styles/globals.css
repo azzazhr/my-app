@@ -57,15 +57,3 @@ a{
 .main-content {
   flex: 1;
 }
-
-.btn-refresh {
-  background-color: #59626d;
-  color: white;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-bottom: 10px;
-  transition: 0.3s;
-}
