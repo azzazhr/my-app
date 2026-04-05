@@ -42,8 +42,8 @@ const kategori = () => {
       <h1>Daftar Produk</h1>
 
       <button onClick={fetchProducts} className="btn-refresh">
-        Refresh Data
-      </button>
+  Refresh Data
+</button>
       
       {products.map((product: ProductType) => (
         <div key={product.id}>
