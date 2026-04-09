@@ -8,7 +8,7 @@ const HalamanProduk = () => {
 
   const { query } = useRouter();
   const { data, error, isLoading } = useSWR(
-    `/api/products/${query.produk}`,
+    `/api/produk/${query.produk}`,
     fetcher
   );
 
