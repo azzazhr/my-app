@@ -1,6 +1,7 @@
 import fetcher from "@/utils/swr/fetcher";
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import DetailProduk from "../../views/DetailProduct";
 
 const HalamanProduk = () => {
   // const Router = useRouter();
@@ -8,14 +9,13 @@ const HalamanProduk = () => {
 
   const { query } = useRouter();
   const { data, error, isLoading } = useSWR(
-    `/api/products/${query.produk}`,
+    `/api/produk/${query.produk}`,
     fetcher
   );
 
   return (
     <div>
-      <h1>Halaman Produk</h1>
-      <p>Produk: {query.produk}</p>
+      <DetailProduk products={isLoading ? [] : data.data} />
     </div>
   );
 };
