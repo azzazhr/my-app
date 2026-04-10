@@ -1,5 +1,10 @@
 import { getToken } from "next-auth/jwt";
-import { NextFetchEvent, NextMiddleware, NextRequest, NextResponse } from "next/server";
+import {
+  NextFetchEvent,
+  NextMiddleware,
+  NextRequest,
+  NextResponse,
+} from "next/server";
 
 export default function withAuth(
   middleware: NextMiddleware,
@@ -15,7 +20,7 @@ export default function withAuth(
       });
 
       if (!token) {
-        const loginUrl = new URL("/login", req.url);
+        const loginUrl = new URL("/", req.url);
         return NextResponse.redirect(loginUrl);
       }
     }
