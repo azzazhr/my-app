@@ -1,19 +1,25 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { getToken } from "next-auth/jwt";
+import { NextFetchEvent, NextMiddleware, NextRequest, NextResponse } from "next/server";
 
-export function middleware(request: NextRequest) {
-  const isLogin = true;
+export default function withAuth(
+  middleware: NextMiddleware,
+  requireAuth: string[] = []
+) {
+  return async (req: NextRequest, next: NextFetchEvent) => {
+    const pathname = req.nextUrl.pathname;
 
-  if (isLogin) {
-    return NextResponse.next();
-  } else {
-    return NextResponse.redirect(new URL("/auth/login", request.url));
-  }
+    if (requireAuth.includes(pathname)) {
+      const token = await getToken({
+        req,
+        secret: process.env.NEXTAUTH_SECRET,
+      });
 
-  // return NextResponse.redirect(new URL("/", request.url));
-  // return NextResponse.next();
+      if (!token) {
+        const loginUrl = new URL("/", req.url);
+        return NextResponse.redirect(loginUrl);
+      }
+    }
+
+    return middleware(req, next);
+  };
 }
-
-export const config = {
-  matcher: ["/produk", "/about"],
-};
