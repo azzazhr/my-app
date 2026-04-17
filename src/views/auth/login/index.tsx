@@ -37,6 +37,7 @@ const TampilanLogin = () => {
   };
 
   return (
+    <>
     <div className={style.login}>
       {error && <p className={style.login__error}>{error}</p>}
       <h1 className={style.login__title}>Halaman Login</h1>
@@ -84,6 +85,7 @@ const TampilanLogin = () => {
         </p>
       </form>
     </div>
+    </>
   );
 };
 
