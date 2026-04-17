@@ -1,5 +1,5 @@
 import Link from "next/link";
-import style from "../../../auth/register/register.module.scss";
+import style from "../../auth/register/register.module.scss";
 
 const TampilanRegister = () => {
   return (
