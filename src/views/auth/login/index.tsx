@@ -114,7 +114,7 @@ const Tampilanlogin = () => {
             className={style.login__form__item__button}
             disabled={isLoading}
           >
-            {isLoading ? "Loading..." : "login"}
+            {isLoading ? "Loading..." : "Login"}
           </button>
 
           <br />
