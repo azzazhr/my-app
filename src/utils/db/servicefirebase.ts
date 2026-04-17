@@ -48,7 +48,7 @@ export async function signUp(
   }));
 
   // console.log("Query result:", data);
-  if (data.length > 0) {
+  if (data.length === 0) {
     // user belum ada → boleh daftar
     // await addDoc(collection(db, "users"), userData);
       // console.log("User registered:", data);
