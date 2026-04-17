@@ -54,21 +54,19 @@ const TampilanRegister = () => {
             placeholder="Password"
             className={style.register__form__item__input}
           />
+        </div>
+        
           {/*button register*/}
           <button type="submit" className={style.register__form__item__button}>
             Register
           </button>
-        </div>
 
-      </form>
-      <br />  
-        <p className={style.register__form__item__text}>
-          Sudah punya akun? <Link href="/auth/login">Ke Halaman Register</Link>
+          <br />
+            <p className={style.register__form__item__text}>
+          Sudah punya akun? <Link href="/auth/login">Ke Halaman Login</Link>
         </p>
-
-      <Link href="/auth/login">Ke Halaman Login</Link>
+      </form>
     </div>
   );
 };
-
 export default TampilanRegister;
