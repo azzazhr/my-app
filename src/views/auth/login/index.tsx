@@ -56,7 +56,7 @@ const Tampilanlogin = () => {
   return (
     <div className={style.login}>
         {error && <p className={style.login__error}>{error}</p>}
-      <h1 className={style.login__title}>Halaman login</h1>
+      <h1 className={style.login__title}>Halaman Login</h1>
 
       <form onSubmit={handleSubmit} className={style.login__form}>
         {/* email */}
@@ -72,22 +72,6 @@ const Tampilanlogin = () => {
             id="email"
             name="email"
             placeholder="Email"
-            className={style.login__form__item__input}
-          />
-        </div>
-        {/* fullname */}
-        <div className={style.login__form__item}>
-          <label
-            htmlFor="Fullname"
-            className={style.login__form__item__label}
-          >
-            Fullname
-          </label>
-          <input
-            type="text"
-            id="Fullname"
-            name="Fullname"
-            placeholder="Fullname"
             className={style.login__form__item__input}
           />
         </div>
