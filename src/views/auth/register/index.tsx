@@ -39,6 +39,22 @@ const TampilanRegister = () => {
             className={style.register__form__item__input}
           />
         </div>
+        {/* password */}
+        <div className={style.register__form__item}>
+          <label
+            htmlFor="Password"
+            className={style.register__form__item__label}
+          >
+            Password
+          </label>
+          <input
+            type="password"
+            id="Password"
+            name="Password"
+            placeholder="Password"
+            className={style.register__form__item__input}
+          />
+        </div>
 
       </form>
 
