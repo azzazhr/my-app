@@ -5,9 +5,9 @@ export default withAuth(
   function middleware() {
     return NextResponse.next();
   },
-  ["/profile"]
+  ["/profile", "/admin"]
 );
 
 export const config = {
-  matcher: ["/profile"],
+  matcher: ["/profile", "/admin"],
 };
