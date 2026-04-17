@@ -32,13 +32,14 @@ const TampilanRegister = () => {
     } else {
       setIsLoading(false);
       setError(
-        response.status === 400 ? "User already exists" : "An error occurred",
+        response.status === 400 ? "Email already exists" : "An error occurred",
       );
     }
   };
 
   return (
     <div className={style.register}>
+        {error && <p className={style.register__error}>{error}</p>}
       <h1 className={style.register__title}>Halaman Register</h1>
 
       <form onSubmit={handleSubmit} className={style.register__form}>
@@ -92,8 +93,12 @@ const TampilanRegister = () => {
         </div>
         
           {/*button register*/}
-          <button type="submit" className={style.register__form__item__button}>
-            Register
+          <button
+            type="submit"
+            className={style.register__form__item__button}
+            disabled={isLoading}
+          >
+            {isLoading ? "Loading..." : "Register"}
           </button>
 
           <br />
