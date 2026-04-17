@@ -2,69 +2,48 @@ import Link from "next/link";
 import style from "../../auth/login/login.module.scss";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 
-const Tampilanlogin = () => {
+const TampilanLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const { push } = useRouter();
+  const { push, query } = useRouter();
+  const callbackUrl: any = query.callbackUrl || "/";
   const [error, setError] = useState("");
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
     setError("");
     setIsLoading(true);
-    event.preventDefault();
-    const form = event.currentTarget;
-    const formData = new FormData(event.currentTarget);
-    const email = formData.get("email") as string;
-    const fullname = formData.get("Fullname") as string;
-    const password = formData.get("Password") as string;
 
-    // validasi email wajib diisi dan password minimal 6 karakter
-    if (!email) {
-      setIsLoading(false);
-      setError("Email wajib diisi");
-      return;
-    }
+    try {
+      const res = await signIn("credentials", {
+        redirect: false,
+        email: event.target.email.value,
+        password: event.target.password.value,
+        callbackUrl,
+      });
 
-    if (password.length < 6) {
+      if (!res?.error) {
+        setIsLoading(false);
+        push(callbackUrl);
+      } else {
+        setIsLoading(false);
+        setError(res.error || "Login failed");
+      }
+    } catch (error) {
       setIsLoading(false);
-      setError("Password minimal 6 karakter");
-      return;
-    }
-    
-    const response = await fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, fullname, password }),
-    });
-    // const result = await response.json();
-    // console.log(result);
-    if (response.status === 200) {
-      form.reset();
-      // event.currentTarget.reset();
-      setIsLoading(false);
-      push("/auth/login");
-    } else {
-      setIsLoading(false);
-      setError(
-        response.status === 400 ? "Email already exists" : "An error occurred",
-      );
+      setError("Wrong email or password");
     }
   };
 
   return (
     <div className={style.login}>
-        {error && <p className={style.login__error}>{error}</p>}
+      {error && <p className={style.login__error}>{error}</p>}
       <h1 className={style.login__title}>Halaman Login</h1>
 
       <form onSubmit={handleSubmit} className={style.login__form}>
-        {/* email */}
         <div className={style.login__form__item}>
-          <label
-            htmlFor="email"
-            className={style.login__form__item__label}
-          >
+          <label htmlFor="email" className={style.login__form__item__label}>
             Email
           </label>
           <input
@@ -75,39 +54,37 @@ const Tampilanlogin = () => {
             className={style.login__form__item__input}
           />
         </div>
-        {/* password */}
+
         <div className={style.login__form__item}>
-          <label
-            htmlFor="Password"
-            className={style.login__form__item__label}
-          >
+          <label htmlFor="password" className={style.login__form__item__label}>
             Password
           </label>
           <input
             type="password"
-            id="Password"
-            name="Password"
+            id="password"
+            name="password"
             placeholder="Password"
             className={style.login__form__item__input}
           />
         </div>
-        
-          {/*button login*/}
-          <button
-            type="submit"
-            className={style.login__form__item__button}
-            disabled={isLoading}
-          >
-            {isLoading ? "Loading..." : "Login"}
-          </button>
 
-          <br />
-            <p className={style.login__form__item__text}>
-          Tidak punya {" ' "}akun? <Link href="/auth/register">Ke Halaman Register</Link>
+        <button
+          type="submit"
+          className={style.login__form__item__button}
+          disabled={isLoading}
+        >
+          {isLoading ? "Loading..." : "Login"}
+        </button>
+
+        <br />
+
+        <p className={style.login__form__item__text}>
+          Tidak punya akun?{" "}
+          <Link href="/auth/register">Ke Halaman Register</Link>
         </p>
       </form>
     </div>
   );
 };
 
-export default Tampilanlogin;
+export default TampilanLogin;
