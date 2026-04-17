@@ -61,6 +61,10 @@ const TampilanRegister = () => {
         </div>
 
       </form>
+      <br />  
+        <p className={style.register__form__item__text}>
+          Sudah punya akun? <Link href="/auth/login">Ke Halaman Register</Link>
+        </p>
 
       <Link href="/auth/login">Ke Halaman Login</Link>
     </div>
