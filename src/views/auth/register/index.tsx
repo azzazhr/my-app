@@ -7,7 +7,7 @@ const TampilanRegister = () => {
       <h1 className={style.register__title}>Halaman Register</h1>
 
       <form className={style.register__form}>
-        
+        {/* email */}
         <div className={style.register__form__item}>
           <label
             htmlFor="email"
@@ -20,6 +20,22 @@ const TampilanRegister = () => {
             id="email"
             name="email"
             placeholder="Email"
+            className={style.register__form__item__input}
+          />
+        </div>
+        {/* fullname */}
+        <div className={style.register__form__item}>
+          <label
+            htmlFor="Fullname"
+            className={style.register__form__item__label}
+          >
+            Fullname
+          </label>
+          <input
+            type="text"
+            id="Fullname"
+            name="Fullname"
+            placeholder="Fullname"
             className={style.register__form__item__input}
           />
         </div>
