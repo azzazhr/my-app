@@ -8,7 +8,9 @@ const TampilanRegister = () => {
   const { push } = useRouter();
   const [error, setError] = useState("");
 
-  const handleSubmit = async ( event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    setError("");
+    setIsLoading(true);
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(event.currentTarget);
