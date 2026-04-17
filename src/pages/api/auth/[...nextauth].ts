@@ -43,32 +43,33 @@ export const authOptions: NextAuthOptions = {
   ],
 
   callbacks: {
-    async jwt({ token, account, user }: any) {
-      if (account?.provider === "credentials" && user) {
-        token.email = user.email;
-        token.fullname = user.fullname;
-        token.role = user.role;
-      }
-      return token;
-    },
-
-    async session({ session, token }: any) {
-      if (token.email) {
-        session.user.email = token.email;
-      }
-
-      if (token.fullname) {
-        session.user.fullname = token.fullname;
-      }
-
-      if (token.role) {
-        session.user.role = token.role;
-      }
-
-      return session;
-    },
+  async jwt({ token, account, profile, user }: any) {
+    if (account?.provider === "credentials" && user) {
+      token.email = user.email;
+      token.fullname = user.fullname;
+      token.role = user.role;
+    }
+    // console.log("jwt callback", { token, account, profile, user })
+    return token;
   },
 
+  async session({ session, token }: any) {
+    if (token.email) {
+      session.user.email = token.email;
+    }
+
+    if (token.fullname) {
+      session.user.fullname = token.fullname;
+    }
+
+    if (token.role) {
+      session.user.role = token.role;
+    }
+
+    // console.log("session callback", { session, token })
+     return session;
+    },
+  },
   pages: {
     signIn: "/auth/login",
   },
