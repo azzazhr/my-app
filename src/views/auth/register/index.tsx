@@ -54,6 +54,10 @@ const TampilanRegister = () => {
             placeholder="Password"
             className={style.register__form__item__input}
           />
+          {/*button register*/}
+          <button type="submit" className={style.register__form__item__button}>
+            Register
+          </button>
         </div>
 
       </form>
