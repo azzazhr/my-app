@@ -104,4 +104,5 @@ const TampilanRegister = () => {
     </div>
   );
 };
+
 export default TampilanRegister;
