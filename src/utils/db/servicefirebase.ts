@@ -48,4 +48,18 @@ export async function signUp(
   }));
 
   // console.log("Query result:", data);
+  if (data.length > 0) {
+    // user belum ada → boleh daftar
+    // await addDoc(collection(db, "users"), userData);
+      // console.log("User registered:", data);
+  callback({
+    status: "success",
+    message: "User registered successfully",
+  });
+  } else {
+  callback({
+    status: "error",
+    message: "User already exists",
+    });
+  }
 }
