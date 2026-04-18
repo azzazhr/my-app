@@ -22,8 +22,8 @@ const Navbar = () => {
                   src={data.user.image}
                   alt={data.user.fullname}
                   className={styles.navbar__user__image}
-                />
-              )}
+            />
+          )}
             </div>
             <button
               className={`${styles.navbar__button} ${styles["navbar__button--danger"]}`}
