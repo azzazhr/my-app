@@ -44,12 +44,13 @@ export async function signIn(email: string) {
   }
 }
 
+// role fleksibel (bisa editor)
 export async function signUp(
   userData: {
     email: string;
     fullname: string;
     password: string;
-    role: string;
+    role?: string;
   },
   callback: Function
 ) {
@@ -71,11 +72,10 @@ export async function signUp(
     });
   } else {
     userData.password = await bcrypt.hash(userData.password, 10);
-    userData.role = "member";
 
     await addDoc(collection(db, "users"), {
       ...userData,
-      role: "member",
+      role: userData.role || "member", 
     })
       .then(() => {
         callback({
@@ -92,6 +92,7 @@ export async function signUp(
   }
 }
 
+// Google login juga support role editor
 export async function signInWithGoogle(userData: any, callback: Function) {
   try {
     const q = query(
@@ -115,13 +116,18 @@ export async function signInWithGoogle(userData: any, callback: Function) {
         data: userData,
       });
     } else {
-      userData.role = "member";
-      await addDoc(collection(db, "users"), userData);
+      await addDoc(collection(db, "users"), {
+        ...userData,
+        role: userData.role || "member", // ✅ FIX DI SINI
+      });
 
       callback({
         status: true,
         message: "User registered and logged in with Google",
-        data: userData,
+        data: {
+          ...userData,
+          role: userData.role || "member",
+        },
       });
     }
   } catch (error: any) {
