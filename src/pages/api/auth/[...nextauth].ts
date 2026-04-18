@@ -1,4 +1,4 @@
-import { signIn, signInWithGoogle } from "@/utils/db/servicefirebase";
+import { signIn, signInWithOAuth } from "@/utils/db/servicefirebase";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
@@ -71,7 +71,7 @@ export const authOptions: NextAuthOptions = {
           type: account.provider,
         };
 
-        await signInWithGoogle(data, (result: any) => {
+        await signInWithOAuth(data, (result: any) => {
           // Pastikan mengecek result.status sesuai dengan object yang dikirim
           if (result.status) {
             token.fullname = result.data.fullname;
