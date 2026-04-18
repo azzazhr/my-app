@@ -29,7 +29,8 @@ export async function retrieveDataByID(collectionName: string, id: string) {
   return data;
 }
 
-export async function signIn(email: string) {
+// reusable: ambil user berdasarkan email
+export async function getUserByEmail(email: string) {
   const q = query(collection(db, "users"), where("email", "==", email));
   const querySnapshot = await getDocs(q);
   const data = querySnapshot.docs.map((doc) => ({
@@ -37,14 +38,25 @@ export async function signIn(email: string) {
     ...doc.data(),
   }));
 
-  if (data.length > 0) {
-    return data[0];
-  } else {
-    return null;
-  }
+  return data.length > 0 ? data[0] : null;
 }
 
-// role fleksibel (bisa editor)
+// reusable: tambah user baru
+export async function createUser(userData: any) {
+  return await addDoc(collection(db, "users"), userData);
+}
+
+// reusable: update user berdasarkan id
+export async function updateUser(id: string, userData: any) {
+  return await updateDoc(doc(db, "users", id), userData);
+}
+
+// tetap dipakai oleh NextAuth credential login
+export async function signIn(email: string) {
+  return await getUserByEmail(email);
+}
+
+// register credential
 export async function signUp(
   userData: {
     email: string;
@@ -54,86 +66,73 @@ export async function signUp(
   },
   callback: Function
 ) {
-  const q = query(
-    collection(db, "users"),
-    where("email", "==", userData.email)
-  );
+  try {
+    const existingUser = await getUserByEmail(userData.email);
 
-  const querySnapshot = await getDocs(q);
-  const data = querySnapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }));
+    if (existingUser) {
+      callback({
+        status: "error",
+        message: "User already exists",
+      });
+      return;
+    }
 
-  if (data.length > 0) {
+    const hashedPassword = await bcrypt.hash(userData.password, 10);
+
+    await createUser({
+      ...userData,
+      password: hashedPassword,
+      role: userData.role || "member",
+    });
+
+    callback({
+      status: "success",
+      message: "User registered successfully",
+    });
+  } catch (error: any) {
     callback({
       status: "error",
-      message: "User already exists",
+      message: error.message,
     });
-  } else {
-    userData.password = await bcrypt.hash(userData.password, 10);
-
-    await addDoc(collection(db, "users"), {
-      ...userData,
-      role: userData.role || "member", 
-    })
-      .then(() => {
-        callback({
-          status: "success",
-          message: "User registered successfully",
-        });
-      })
-      .catch((error) => {
-        callback({
-          status: "error",
-          message: error.message,
-        });
-      });
   }
 }
 
-// Google login juga support role editor
-export async function signInWithGoogle(userData: any, callback: Function) {
+// reusable untuk OAuth provider (Google, GitHub, dll)
+export async function signInWithOAuth(userData: any, callback: Function) {
   try {
-    const q = query(
-      collection(db, "users"),
-      where("email", "==", userData.email)
-    );
+    const existingUser: any = await getUserByEmail(userData.email);
 
-    const querySnapshot = await getDocs(q);
-    const data: any = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+    if (existingUser) {
+      const updatedData = {
+        ...userData,
+        role: existingUser.role,
+      };
 
-    if (data.length > 0) {
-      userData.role = data[0].role;
-      await updateDoc(doc(db, "users", data[0].id), userData);
+      await updateUser(existingUser.id, updatedData);
 
       callback({
         status: true,
-        message: "User registered and logged in with Google",
-        data: userData,
+        message: "User logged in successfully",
+        data: updatedData,
       });
     } else {
-      await addDoc(collection(db, "users"), {
+      const newUser = {
         ...userData,
-        role: userData.role || "member", 
-      });
+        role: userData.role || "member",
+      };
+
+      await createUser(newUser);
 
       callback({
         status: true,
-        message: "User registered and logged in with Google",
-        data: {
-          ...userData,
-          role: userData.role || "member",
-        },
+        message: "User registered successfully",
+        data: newUser,
       });
     }
   } catch (error: any) {
     callback({
       status: false,
-      message: "Failed to register user with Google",
+      message: error.message,
     });
   }
 }
