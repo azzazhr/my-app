@@ -118,7 +118,7 @@ export async function signInWithGoogle(userData: any, callback: Function) {
     } else {
       await addDoc(collection(db, "users"), {
         ...userData,
-        role: userData.role || "member", // ✅ FIX DI SINI
+        role: userData.role || "member", 
       });
 
       callback({
