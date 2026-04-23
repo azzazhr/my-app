@@ -1,7 +1,11 @@
 import { useRouter } from "next/router";
-import Navbar from "../navbar";
+import dynamic from "next/dynamic";
 import Footer from "../footer";
 import { Roboto } from "next/font/google";
+
+const Navbar = dynamic(() => import("../navbar"), {
+  ssr: false,
+});
 
 const disableNavbar = ["/auth/login", "/auth/register", '/404'];
 
