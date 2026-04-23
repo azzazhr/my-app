@@ -26,10 +26,10 @@ const Navbar = () => {
               Welcome, {data.user?.fullname}
               {data.user.image && (
                 <Image
-                  src={data.user.image}
-                  alt="profile"
                   width={50}
                   height={50}
+                  src={data.user.image}
+                  alt={data.user.fullname}
                   className={styles.navbar__profile__image}
                 />
               )}
