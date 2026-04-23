@@ -1,24 +1,24 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from "next/image";
 import styles from '@/styles/404.module.scss';
 
 const Custom404 = () => {
   return (
-    <>
     <div className={styles.error}>
-      <Head>
-        <title>404 - Halaman Tidak Ditemukan</title>
-      </Head>
+      {/* <img src="/page-not-found.png" alt="404" className={styles.error__image} /> */}
+      
+      <Image
+        src="/page-not-found.png"
+        alt="404"
+        width={400}
+        height={200}
+        className={styles.error__image}
+      />
 
-      <img src="/page-not-found.png" alt="404" className={styles.error__image} />
       <h1>404 - Halaman Tidak Ditemukan</h1>
-      <p>Maaf, halaman yang Anda cari tidak ditemukan.</p>
-
-      <Link href="/">
-        Kembali ke Home
-      </Link>
-      </div>
-    </>
+      <p>Maaf, halaman yang Anda cari tidak ada.</p>
+    </div>
   );
 };
 
