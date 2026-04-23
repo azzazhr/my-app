@@ -10,7 +10,9 @@ const Navbar = () => {
 
   return (
     <div className={styles.navbar}>
-      <div className={styles.navbar__brand} id="title"></div>
+      {/*<div className={styles.navbar__brand}>
+        MyApp
+      </div>*/}
 
       <Script id="title-script" strategy="lazyOnload">
         {`document.getElementById('title').innerHTML = 'MyApp';`}
