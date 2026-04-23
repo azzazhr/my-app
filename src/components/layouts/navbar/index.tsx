@@ -25,6 +25,7 @@ const Navbar = () => {
             <div className={styles.navbar__user}>
               Welcome, {data.user?.fullname}
               {data.user.image && (
+
                 <Image
                   width={50}
                   height={50}
@@ -32,6 +33,7 @@ const Navbar = () => {
                   alt={data.user.fullname}
                   className={styles.navbar__profile__image}
                 />
+                
               )}
             </div>
             <button

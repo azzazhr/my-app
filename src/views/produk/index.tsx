@@ -20,7 +20,9 @@ const TampilanProduk = ({ products }: { products: ProductType[] }) => {
             {products.map((products: ProductType) => (
               <Link href={`/produk/${products.id}`} key={products.id} className={styles.produk__content__item}>
                 <div className={styles.produk__content__item__image}>
-                  <Image src={products.image} alt={products.name} width={200} height={200}/>
+                  
+                  <Image src={products.image} alt={products.name} width={200} height={200} />
+                  
                 </div>
                 <h4 className={styles.produk__content__item__name}>
                   {products.name}
