@@ -9,6 +9,7 @@ type AppShellProps = {
   children: React.ReactNode;
 }
 
+//menggunakan 1 font dari next/font
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
