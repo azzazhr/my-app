@@ -14,6 +14,7 @@ const Navbar = () => {
         MyApp
       </div>*/}
 
+      <div className={styles.navbar__brand} id="title"></div>
       <Script id="title-script" strategy="lazyOnload">
         {`document.getElementById('title').innerHTML = 'MyApp';`}
       </Script>
@@ -27,8 +28,8 @@ const Navbar = () => {
                 <Image
                   src={data.user.image}
                   alt="profile"
-                  width={40}
-                  height={40}
+                  width={50}
+                  height={50}
                   className={styles.navbar__profile__image}
                 />
               )}
