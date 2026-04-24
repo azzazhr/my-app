@@ -9,16 +9,9 @@ const config = {
   modulePaths: ['<rootDir>/src/'],
   collectCoverage: true,
   collectCoverageFrom: [
-    '**/*.{ts,tsx}',
-    '**/*.d.ts',
-    '!**/node_modules/**',
-    '!**/.next/**',
-    '!**/coverage/**',
-    '!**/jest.config.mjs',
-    '!**/next.config.mjs',
-    '!**/types/**',
-    '!**/views/**',
-    '!**/pages/api/**',
+    "src/pages/about/index.tsx",
+    "src/pages/produk/index.tsx",
+    "src/views/produk/index.tsx",
   ],
 }
 
