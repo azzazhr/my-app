@@ -6,57 +6,21 @@ exports[`About Page renders about page correctly 1`] = `
   "baseElement": <body>
     <div>
       <div>
-        <h1>
-          Ini Halaman About 
+        <h1
+          data-testid="title"
+        >
+          About Page
         </h1>
-         
-        <br />
-        <p>
-          <b>
-            Nama :
-          </b>
-           Azzahra Attaqina
-        </p>
-        <p>
-          <b>
-            NIM :
-          </b>
-           2341720224
-        </p>
-        <p>
-          <b>
-            Program Studi :
-          </b>
-           D4 Teknik Informatika
-        </p>
       </div>
     </div>
   </body>,
   "container": <div>
     <div>
-      <h1>
-        Ini Halaman About 
+      <h1
+        data-testid="title"
+      >
+        About Page
       </h1>
-       
-      <br />
-      <p>
-        <b>
-          Nama :
-        </b>
-         Azzahra Attaqina
-      </p>
-      <p>
-        <b>
-          NIM :
-        </b>
-         2341720224
-      </p>
-      <p>
-        <b>
-          Program Studi :
-        </b>
-         D4 Teknik Informatika
-      </p>
     </div>
   </div>,
   "debug": [Function],
