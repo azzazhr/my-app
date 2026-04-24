@@ -6,6 +6,11 @@ exports[`Product Page renders product page correctly 1`] = `
   "baseElement": <body>
     <div>
       <div>
+        <h1
+          data-testid="title"
+        >
+          Product Page
+        </h1>
         <div
           class="produk"
         >
@@ -40,6 +45,11 @@ exports[`Product Page renders product page correctly 1`] = `
   </body>,
   "container": <div>
     <div>
+      <h1
+        data-testid="title"
+      >
+        Product Page
+      </h1>
       <div
         class="produk"
       >

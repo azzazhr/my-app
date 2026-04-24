@@ -18,6 +18,7 @@ const kategori = () => {
 
   return (
     <div>
+      <h1 data-testid="title">Product Page</h1>
       <TampilanProduk products={isLoading ? [] : data?.data} />
     </div>
   );
