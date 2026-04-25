@@ -1,12 +1,16 @@
 import { NextResponse } from "next/server";
-import withAuth from "./middleware/withAuth";
+// import withAuth from "./middleware/withAuth";
 
-export default withAuth(
-  function middleware() {
-    return NextResponse.next();
-  },
-  ["/profile", "/admin", "/editor"]
-);
+// export default withAuth(
+//   function middleware() {
+//     return NextResponse.next();
+//   },
+//   ["/profile", "/admin", "/editor"]
+// );
+
+export function middleware() {
+  return NextResponse.next();
+}
 
 export const config = {
   matcher: ["/profile", "/admin", "/editor"], 
