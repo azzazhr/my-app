@@ -20,7 +20,7 @@ export async function getServerSideProps() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/produk`);
   const response = await res.json();
 
-  console.log("Data produk yang diambil dari API:", response);
+  //console.log("Data produk yang diambil dari API:", response);
 
   return {
     props: {
